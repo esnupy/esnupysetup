@@ -83,6 +83,12 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY preview
 vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY development
 ```
 
+Si el proyecto tiene **Clerk** (vía `/clerk-auth-bridge`), también en los tres ambientes:
+
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `CLERK_SECRET_KEY`
+- (y cualquier URL pública tipo `NEXT_PUBLIC_CLERK_SIGN_IN_URL` si las usáis — ver skill Clerk)
+
 Si hay `SUPABASE_SERVICE_ROLE_KEY` y se usa server-side, súbela solo a `production` y `preview`. **Nunca** a `development` (riesgo de leak).
 
 Alternativa más rápida si todo el `.env.local` es válido:
@@ -106,7 +112,7 @@ Esto crea un deploy preview. Espera la URL.
 
 Usa el browser MCP para abrir el preview URL y recorrer el happy path completo. Verifica:
 
-- [ ] Login funciona (si aplica). Recordatorio: en Supabase Auth, agrega el preview URL a "Site URL" o "Additional Redirect URLs".
+- [ ] Login funciona (si aplica). **Supabase Auth**: agrega el preview URL a "Site URL" o "Additional Redirect URLs". **Clerk**: permite el dominio de preview en Allowed origins / redirects (ver consola Clerk).
 - [ ] Acción wow funciona y persiste (verifica en DB con Supabase MCP `execute_sql`).
 - [ ] No hay errores en consola del browser.
 
@@ -172,12 +178,13 @@ vercel logs <deployment-url> --follow
 
 ## Qué viene después
 
-- **Siguiente y final**: `/day-retro` (cierra el día con qué aprendiste).
+- **Siguiente y final del día típico**: `/day-retro` (cierra el día con qué aprendiste).
+- Si aún falta puente de identidad con Clerk: después de tener datos en producción, `/clerk-auth-bridge`.
 
 ## Anti-patrones
 
 - Subir el service role key a `development` env. Riesgo de leak.
 - Saltar el preview deploy. El smoke test en preview es donde encuentras los redirect URL faltantes.
-- Olvidar agregar la URL de prod a Supabase Auth. El login va a romper en producción y la demo se cae.
+- Olvidar agregar la URL de prod a Supabase Auth (si usas ese proveedor). Con Clerk omite esta regla pero configura igual los dominios de prod/preview en Clerk.
 - Deployar con `git status` sucio. Lo que está en local no es lo que va a producción.
 - Usar `vercel deploy --prod` la primera vez. Siempre preview primero.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Vendorea las 13 skills de esnupysetup a un proyecto específico.
+# Vendorea las 14 skills de esnupysetup a un proyecto específico.
 # Uso: bash vendor-to-project.sh /ruta/al/proyecto
 
 set -euo pipefail
@@ -35,6 +35,7 @@ SKILLS=(
   "demo-check"
   "vercel-ship"
   "day-retro"
+  "clerk-auth-bridge"
 )
 
 mkdir -p "$TARGET_DIR"
@@ -54,7 +55,7 @@ if [ -f "$REPO_DIR/README.md" ]; then
 fi
 
 echo ""
-echo "Listo. 13 skills vendoreadas a $TARGET_DIR"
+echo "Listo. 14 skills vendoreadas a $TARGET_DIR"
 echo "Tu equipo las verá automáticamente al abrir el proyecto en Cursor."
 echo ""
 echo "Recordatorio: añade .cursor/skills/ al repo si quieres que el equipo las herede."

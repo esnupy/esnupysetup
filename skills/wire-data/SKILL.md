@@ -281,6 +281,7 @@ Debe matchear los campos del `.select()` y los del TS interface.
 
 - **Siguiente**: `/demo-check` (3 tests + smoke en local antes de deploy).
 - Después: `/vercel-ship` (deploy a producción).
+- **Opcional (último)**: `/clerk-auth-bridge` si el usuario rechaza Supabase Auth y quiere Clerk manteniendo la misma base y RLS.
 
 ## Anti-patrones
 
