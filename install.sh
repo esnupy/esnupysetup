@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala las 13 skills de esnupysetup en ~/.cursor/skills/ via symlinks.
+# Instala las 14 skills de esnupysetup en ~/.cursor/skills/ via symlinks.
 # Uso:
 #   curl -fsSL https://raw.githubusercontent.com/esnupy/esnupysetup/main/install.sh | bash
 #   o desde el repo clonado: bash install.sh
@@ -24,10 +24,11 @@ SKILLS=(
   "demo-check"
   "vercel-ship"
   "day-retro"
+  "clerk-auth-bridge"
 )
 
 echo ""
-echo "  esnupysetup — instalando 13 skills"
+echo "  esnupysetup — instalando 14 skills"
 echo "  ────────────────────────────────────"
 echo ""
 
@@ -78,7 +79,7 @@ for skill in "${SKILLS[@]}"; do
 done
 
 echo ""
-echo "  Listo. 13 skills instaladas."
+echo "  Listo. 14 skills instaladas."
 echo ""
 echo "  Reinicia Cursor o abre un proyecto para que las descubra."
 echo "  Después di algo como: 'tengo una idea de…' y mira qué pasa."

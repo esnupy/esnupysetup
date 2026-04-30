@@ -141,9 +141,12 @@ git commit -m "feat: connect supabase (schema + RLS + auth + types)"
 
 > Supabase listo. Tablas: [N], RLS verificado, tipos generados, advisors limpios. La UI sigue corriendo con mocks. Próximo: `/wire-data` para reemplazar mocks con queries Supabase reales — sin tocar componentes visuales.
 
+Si el usuario **no** quiere Supabase Auth y prefiere Clerk para login/sesión, **no bloquees** el flujo aquí: completa wire + ship y al final invoca `/clerk-auth-bridge` (puente JWT + RLS; ver skill).
+
 ## Qué viene después
 
 - **Siguiente**: `/wire-data` (cambia las fuentes de datos, mantiene UI intacta).
+- **Después (opcional)**: `/clerk-auth-bridge` solo cuando pida identidad con Clerk en lugar de Supabase Auth.
 
 ## Anti-patrones
 

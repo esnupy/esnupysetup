@@ -1,6 +1,6 @@
 # esnupysetup
 
-> 13 skills de Cursor para ir de **idea a producto desplegado en un día**, con stack opinionado: **Next.js 16 + shadcn/ui + Supabase + Vercel**.
+> 14 skills de Cursor para ir de **idea a producto desplegado en un día**, con stack opinionado: **Next.js 16 + shadcn/ui + Supabase + Vercel** (con **opción final** de identidad mediante **Clerk** si no quieres usar Supabase Auth).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -46,11 +46,14 @@ Skill: tablas derivadas de los TS interfaces aprobados,
 Tú:    /demo-check /vercel-ship /day-retro
 Skill: 3 tests + deploy + retrospectiva
        → URL pública en https://tu-app.vercel.app
+
+       (Opcional después de datos reales:) /clerk-auth-bridge
+       → mismo Postgres + RLS en Supabase; login y sesión con Clerk
 ```
 
 Total: 8 horas. Cero rework.
 
-## Las 13 skills
+## Las 14 skills
 
 | Fase | Skill | Qué hace |
 |---|---|---|
@@ -67,6 +70,7 @@ Total: 8 horas. Cero rework.
 | **SHIP** | `demo-check` | 3 tests + smoke → DEMO.md |
 | | `vercel-ship` | Deploy con env vars + smoke en producción |
 | | `day-retro` | Compromiso vs realidad + 3 aprendizajes → RETRO.md |
+| **OPCIONAL (identidad)** | `clerk-auth-bridge` | Después de datos reales: Clerk en lugar de Supabase Auth; Postgres + RLS siguen en Supabase |
 
 ## Instalación
 
@@ -104,6 +108,7 @@ Cursor las descubre solas por su `description`. Habla natural:
 - "Ya está la UI" → dispara `ui-approve`
 - "Conecta los datos" → dispara `wire-data`
 - "Deploy" → dispara `vercel-ship`
+- "Auth con Clerk" / "no quiero Supabase Auth" → dispara `clerk-auth-bridge` (solo si ya hay Supabase + datos cableados)
 
 O invócalas explícito en el chat: "usa el skill ui-mockup".
 
@@ -129,7 +134,7 @@ Esto evita rework: la UI se diseña con mocks (rápido y barato cambiar), se apr
 Esta suite **no** es agnóstica. Es para:
 
 - **Frontend**: Next.js 16 (App Router) + shadcn/ui + Tailwind v4
-- **Backend**: Supabase (Auth + Postgres + RLS)
+- **Backend**: Supabase (Postgres + RLS; **Auth por defecto** en Supabase; **opcional** identidad con Clerk vía `clerk-auth-bridge` como último paso)
 - **Deploy**: Vercel
 - **Setup base**: `npx shadcn@latest init --preset b0 --base base --template next`
 
